@@ -19,30 +19,30 @@ var remainingLetters = song.length;
 
 //show the player's guesses
 while (remainingLetters > 0) {
-    report(answerArray.join(""));
+    console.log(answerArray.join(" "));
 }
 
 //Player input
-var guess = document.getElementById("exampleFormControlTextarea1")
+var guess = document.getElementById("user-text")
 
 document.onkeyup = function(event) {
-    guess.textContent = event.key;
+     guess.textContent = event.key;
 }
-//Get a guess from the player
-if (guess.length !== 1) {
-    alert("Chill! Enter one letter at a time.");
-} else {
-//Update the game with the guess
-    for (var j=0; j<song.length; j++) {
-        if (song[j] === guess) {
-            answerArray[j] = guess;
-            remainingLetters--;
-        }
-    }
-}
-//End of the game loop
+// //Get a guess from the player
+// if (guess.length !== 1) {
+//     alert("Chill! Enter one letter at a time.");
+// } else {
+// //Update the game with the guess
+//     for (var j=0; j<song.length; j++) {
+//         if (song[j] === guess) {
+//             answerArray[j] = guess;
+//             remainingLetters--;
+//         }
+//     }
+// }
+// //End of the game loop
 
-//Show the answer and win or loss response
-alert(answerArray.join(" "));
-alert("Far out! The answer was " + song);
+// //Show the answer and win or loss response
+// alert(answerArray.join(" "));
+// alert("Far out! The answer was " + song);
 //var name = beatleSongList.toUpperCase to get all the letters to be capital during the word guess
