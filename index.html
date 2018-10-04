@@ -25,14 +25,29 @@
     </div>
 
     <div class="container">
-        <h3 id="word-blank"></h3>
-        
-        <p>Guessed remaining: <span id="guesses-left"></span></p>
-        <p>Letters Guessed: <span id="wrong-guesses"></span></p>
-        <p>Wins: <span id="win-counter"></span></p>
-        <p>Losses: <span id="loss-counter"></span></p>
-
+        <div class="row">
+            <div class="col-md-8 gameplay-column">
+                <h2 id="pressKeyTryAgain">Press any key to start!</h2>
+                <h3>Current Word:</h3>
+                    <h4 id="currentWord"></h4>
+                <h3>Letters Guessed:</h3>
+                    <h4 id="guessedLetters"></h4> 
+                <h3>Guesses Remaining:</h3>
+                    <h4 id="guessesRemaining"></h4> 
+                <h3>Wins:</h3>
+                    <h4 id="winCounter"></h4> 
+                <h3>Losses:</h3>
+                    <h4 id="lossCounter"></h4>             
+            </div>
+        </div>
     </div>
+    
+    <script>
+        resetGame();
+        updateDisplay();
+    </script>
+
+
 
 <!-- PseudoCode:
     - Game starts with any key pressed
