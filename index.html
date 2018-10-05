@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Word Guess Game - Beatles Edition</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css"/>
     <script src="assets/javascript/game.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Monoton|Montserrat" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -20,33 +20,65 @@
         <div class="container">
             <h1 class="display-4">Word Guess Game</h1>
                 <p class="lead"><strong>Beatles Edition</strong></p>
-                <p class="lead">Type any letter key to make your first guess.</p>
         </div>
     </div>
 
     <div class="container">
         <div class="row">
+            <div class="col-md-4">
+                <div class="row">
+                    <h3>Game Log</h3>
+                    <div class="col-md-10">
+                        <h4>Remaining Guesses:</h4>
+                    </div>
+                    <div class="col-md-2">
+                        <h5 id="remainingGuesses"></h5>
+                    </div>
+                   
+                    <div class="col-md-10">
+                        <h4>Letters Guessed:</h4>
+                    </div>
+                    <div class="col-md-2">
+                        <h5 id="guessedLetters"></h5>
+                    </div>
+                    
+                    <div class="col-md-10">
+                        <h4>Wins:</h4>
+                    </div>
+                    <div class="col-md-2">
+                        <h5 id="wins"></h5>
+                    </div>
+                    
+                    <div class="col-md-10">
+                        <h4>Losses:</h4>
+                    </div>
+                    <div class="col-md-2">
+                        <h5 id="losses"></h5>
+                    </div>
+                </div>
+
+            </div>
             <div class="col-md-8 gameplay-column">
                 <h2 id="pressKeyTryAgain">Press any key to start!</h2>
-                <h3>Current Word:</h3>
+                
+                <h1>Guess this Beatles word!</h1>
                     <h4 id="currentWord"></h4>
-                <h3>Letters Guessed:</h3>
-                    <h4 id="guessedLetters"></h4> 
-                <h3>Guesses Remaining:</h3>
-                    <h4 id="remainingGuesses"></h4> 
-                <h3>Wins:</h3>
-                    <h4 id="wins"></h4> 
-                <h3>Losses:</h3>
-                    <h4 id="losses"></h4>             
+            </div>
+
+
+                        
+               </div>
             </div>
         </div>
     </div>
+            
     
     <script>
         resetGame();
         updateDisplay();
     </script>
 
+<link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css"/>
 
 
 <!-- PseudoCode:
@@ -58,61 +90,6 @@
     - wins and losses are tallied on the page
     - game is auto reset to start a new game once game ends
 
-
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <h3>Lay it on me, what's your guess?</h3>
-                <div class="row">
-                    <div class="col-md-6">
-                        <p id="#"></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <h3>Game Log</h3>
-                
-                <div class="row">
-                    <div class="col-md-10">
-                        <h4>Number of guesses remaining:</h4> 
-                    </div>
-                    <div class="col-md-2">
-                        <h5 id="attemptsLeft">10</h5>
-                    </div>
-                </div>
-               
-                <div class="row">
-                    <div class="col-md-10">
-                        <h4>Letters guessed:</h4>
-                    </div>
-                    <div class="col-md-2">
-                        <h5 id="output"></h5>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-10">
-                        <h4>Wins:</h4>
-                    </div>
-                    <div class="col-md-2">
-                        <h5 id="win">0</h5>
-
-                    </div>
-                </div>
-
-                <div class="row">
-                        <div class="col-md-10">
-                            <h4>Losses:</h4>
-                        </div>
-                        <div class="col-md-2">
-                            <h5 id="lose"></h5>
-                        </div>
-                    </div>
-            </div>
-        </div>
-    </div> -->
     
 </body>
 </html>

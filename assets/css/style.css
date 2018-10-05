@@ -3,16 +3,61 @@
 body {
     margin: 0;
     background-image: url(../images/Dye_Tie_Background.jpg);
+    opacity: 30%;
 }
 
 #currentWord {
-    font-size: 80px;
-    text-align: left;
-    letter-spacing: 10px;
-    margin: 15px auto;
+    font-size: 50px;
+    text-align: center;
+    letter-spacing: 5px;
+    margin: 5px auto;
     height: 150px;
-    width: 80%;
+    width: 100%;
 }
 
+.jumbotron { 
+    background: darkgrey;
+    padding: 15px;
+}
+
+.display-4 {
+    font-family: 'Monoton', cursive;
+}
+
+h5 {
+    color: whitesmoke;
+    font-family: font-family: 'Montserrat', sans-serif;
+
+}
+
+h4 {
+    color: whitesmoke;
+    font-family: font-family: 'Montserrat', sans-serif;
+
+}
+
+h3 {
+    color: whitesmoke;
+    font-family: font-family: 'Montserrat', sans-serif;
+
+}
+
+h2 {
+    color: whitesmoke;
+    font-family: font-family: 'Montserrat', sans-serif;
+
+}
+
+h1 {
+    color: whitesmoke;
+    font-family: font-family: 'Montserrat', sans-serif;
+
+}
+
+.lead {
+    font-family: font-family: 'Montserrat', sans-serif;
+    color: darkblue;
+    font-size: 40px;
+}
 
 
