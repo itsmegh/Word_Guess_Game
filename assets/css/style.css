@@ -37,7 +37,7 @@ h4 {
 }
 
 h3 {
-    color: whitesmoke;
+    color: darkblue;
     font-family: font-family: 'Montserrat', sans-serif;
 
 }
@@ -49,6 +49,7 @@ h2 {
 }
 
 h1 {
+    text-align: center;
     color: whitesmoke;
     font-family: font-family: 'Montserrat', sans-serif;
 
@@ -58,6 +59,7 @@ h1 {
     font-family: font-family: 'Montserrat', sans-serif;
     color: darkblue;
     font-size: 40px;
+    text-align: center;
 }
 
 

@@ -126,8 +126,6 @@ function evaluateGuess(letter) {
 
 };
 
-
-
 function checkWin() {
     if(guessingWord.indexOf("_") === -1) {
         alert("Far out! You win!");
@@ -173,7 +171,7 @@ document.onkeyup = function(event) {
     }
 };
 
-  
+console.log(guessingWord.join(""));
 
 
 
