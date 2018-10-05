@@ -9,7 +9,7 @@ var beatleWordList = [
 const maxTries = 10;
 
 var guessedLetters = [];
-var chosenWordIndex;
+var currentWordsIndex;
 var guessingWord = []; //an array that stores the letters that have been correctly guessed in the secret word
 var remainingGuesses = 0;
 var hasFinished = false;
@@ -25,9 +25,6 @@ function resetGame() {
 
     currentWordsIndex = Math.floor(Math.random() * (beatleWordList.length));
 
-    guessedLetters = [];
-    guessingWord = [];
-
     for(var i=0; i<beatleWordList[currentWordsIndex].length; i++) {
         guessingWord.push("_");
     }
@@ -40,17 +37,18 @@ function resetGame() {
 
 //Updates the display on the HTML page
 function updateDisplay() {
-    document.getElementById("winCounter").innerText = wins;
+    var guessingWordText = "";
+    document.getElementById("winCounter").innerHTML = wins;
     
     //display how much of the word we have guesses so far
     //printing the array adds a comma so we concantenate the string from each value in the array
-    var guessingWordText = "";
+    
     for(var i=0; i<guessingWord.length; i++) {
         guessingWordText += guessingWord[i];
     }
-    document.getElementById("currentWord").innerText = guessingWordText;
-    document.getElementById("remainingGuesses").innerText = remainingGuesses;
-    document.getElementById("guessedLetters").innerText = guessedLetters;
+    document.getElementById("currentWord").innerHTML = guessingWordText;
+    document.getElementById("remainingGuesses").innerHTML = remainingGuesses;
+    document.getElementById("guessedLetters").innerHTML = guessedLetters.join(" ");
 
 };
 
@@ -59,11 +57,13 @@ function updateDisplay() {
 //if letter found, replace underscores with letters in secret word
 function evaluateGuess(letter) {
     var positions = [];
+    var letterInWord = false;
 
 
     for(var i=0; i<beatleWordList[currentWordsIndex].length; i++) {
         if(beatleWordList[currentWordsIndex][i] === letter) {
             positions.push(i);
+            letterInWord = true;
         }
     }
 
@@ -72,10 +72,14 @@ function evaluateGuess(letter) {
     } else {
     //loop through the secret word and replace _ with a letter
         for(var i=0; i<positions.length; i++) {
+            if(guessingWord[i] === letter) {
             guessingWord[positions[i]] = letter;
+            }
         }
     }
 };
+
+console.log(guessingWord);
 
 function checkWin() {
     if(guessingWord.indexOf("_") === -1) {
@@ -121,6 +125,7 @@ document.onkeyup = function(event) {
         }
     }
 };
+
   
 
 
@@ -154,7 +159,7 @@ document.onkeyup = function(event) {
 
 //     console.log(blanksAndCorrectLetters);
 //     console.log("Hello line 40")
-//     document.getElementById('word-blank').innerHTML = this.blanksAndCorrectLetters;
+//     document.getElementById('word-blank').innerHTML = this.blanksAndCorrectLetters; //this was edited
 //     document.getElementById('guesses-left').innerHTML = numGuesses;
 
 // }
@@ -218,7 +223,6 @@ document.onkeyup = function(event) {
 //     roundComplete();
 // }
 
-// //to set only a-z pressed --if(event.keyCode >= 65 && event.keyCode <= 90) {
 
 
 // //document.onkeydown = function(event) {
