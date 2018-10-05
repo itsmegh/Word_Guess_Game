@@ -6,125 +6,157 @@ var beatleWordList = [
 "maggie mae", "kaleidoscope eyes", "marmalade skies", "tangerine trees", "nowhere man", "groovy",
 ]
 
-const maxTries = 10;
+var word = beatleWordList[Math.floor(Math.random() * beatleWordList.length)];
+var answerArray = [];
+for (var i=0; i<word.length; i++) {
+    answerArray[i] = "_";
+}
 
-var guessedLetters = [];
-var currentWordsIndex;
-var guessingWord = []; //an array that stores the letters that have been correctly guessed in the secret word
-var remainingGuesses = 0;
-var hasFinished = false;
-var wins = 0;
-var losses = 0;
+var remainingLetters = word.length;
 
-//Reset the game-level variables
-function resetGame() {
-    remainingGuesses = maxTries;
-
-    //Randomly select a number between 0 and the length of the words array
-    // Use the guessingWord array to initialize underscores that get replaced as correct letters are guessed
-
-    currentWordsIndex = Math.floor(Math.random() * (beatleWordList.length));
-
-    for(var i=0; i<beatleWordList[currentWordsIndex].length; i++) {
-        guessingWord.push("_");
-    }
-
-    document.getElementById("pressKeyTryAgain").style.cssText = "display: none";
-
-    //show display
-    updateDisplay();
-};
-
-//Updates the display on the HTML page
-function updateDisplay() {
-    var guessingWordText = "";
-    document.getElementById("winCounter").innerHTML = wins;
-    
-    //display how much of the word we have guesses so far
-    //printing the array adds a comma so we concantenate the string from each value in the array
-    
-    for(var i=0; i<guessingWord.length; i++) {
-        guessingWordText += guessingWord[i];
-    }
-    document.getElementById("currentWord").innerHTML = guessingWordText;
-    document.getElementById("remainingGuesses").innerHTML = remainingGuesses;
-    document.getElementById("guessedLetters").innerHTML = guessedLetters.join(" ");
-
-};
-
-//searches the secret word to find all instances of a letter
-//if letter not found in word, subtract a remaining guess
-//if letter found, replace underscores with letters in secret word
-function evaluateGuess(letter) {
-    var positions = [];
-    var letterInWord = false;
-
-
-    for(var i=0; i<beatleWordList[currentWordsIndex].length; i++) {
-        if(beatleWordList[currentWordsIndex][i] === letter) {
-            positions.push(i);
-            letterInWord = true;
-        }
-    }
-
-    if(positions.length <= 0) {
-        remainingGuesses--;
+//game loop
+while(remainingLetters > 0) {
+    alert(answerArray.join(" "));
+    var guess = prompt("Guess a letter, or click cancel to stop playing.");
+    if(guess === null) {
+        break;
+    } else if (guess.length !== 1) {
+        alert("Please enter a single letter.");
     } else {
-    //loop through the secret word and replace _ with a letter
-        for(var i=0; i<positions.length; i++) {
-            if(guessingWord[i] === letter) {
-            guessingWord[positions[i]] = letter;
+        for (var j=0; j<word.length; j++) {
+            if (word[j] === guess) {
+                answerArray[j] = guess;
+                remainingLetters--;
             }
         }
     }
-};
-
-console.log(guessingWord);
-
-function checkWin() {
-    if(guessingWord.indexOf("_") === -1) {
-        alert("Far out! You win!");
-        document.getElementById("pressKeyTryAgain").style.cssText= "display:block";
-        wins++;
-        hasFinished = true;
-    
-    }
-};
-
-function checkLoss() {
-    if(remainingGuesses <= 0) {
-        alert("Bummer, you lose.");
-        document.getElementById("pressKeyTryAgain").style.cssText= "display:block";
-        losses++;
-        hasFinished = true;
-    }
 }
 
-//this function compares the key pressed to the secret word
-function makeGuess(letter) {
-    if(remainingGuesses > 0) {
-        if(guessedLetters.indexOf(letter) === -1) {
-            guessedLetters.push(letter);
-            evaluateGuess(letter);
-        }
-    }
-};
+alert(answerArray.join(" "));
+alert("Good job! The answer was " + word);
 
-document.onkeyup = function(event) {
-    //if we finish a game, don't count the keystroke as a guess, but instead a game restart
-    if(hasFinished) {
-        resetGame();
-        hasFinished = false;
-    } else {
-        //check that a-z was pressed
-        if(event.keyCode >=65 && event.keyCode <=90) {
-            makeGuess(event.key.toUpperCase());
-            updateDisplay();
-            checkWin();
-            checkLoss();
-        }
-    }
-};
+//need to include a space with the underscores
+// need to update wins and losses
+
+
+// const maxTries = 10;
+
+// var guessedLetters = [];
+// var currentWordsIndex;
+// var guessingWord = []; //an array that stores the letters that have been correctly guessed in the secret word
+// var remainingGuesses = 0;
+// var hasFinished = false;
+// var wins = 0;
+// var losses = 0;
+
+// //Reset the game-level variables
+// function resetGame() {
+//     remainingGuesses = maxTries;
+
+//     //Randomly select a number between 0 and the length of the words array
+//     // Use the guessingWord array to initialize underscores that get replaced as correct letters are guessed
+
+//     currentWordsIndex = Math.floor(Math.random() * (beatleWordList.length));
+
+//     for(var i=0; i<beatleWordList[currentWordsIndex].length; i++) {
+//         guessingWord.push("_");
+//     }
+
+//     document.getElementById("pressKeyTryAgain").style.cssText = "display: none";
+
+//     //show display
+//     updateDisplay();
+// };
+
+// //Updates the display on the HTML page
+// function updateDisplay() {
+//     var guessingWordText = "";
+//     document.getElementById("wins").innerHTML = wins;
+//     document.getElementById("losses").innerHTML = losses;
+    
+//     //display how much of the word we have guesses so far
+//     //printing the array adds a comma so we concantenate the string from each value in the array
+    
+//     for(var i=0; i<guessingWord.length; i++) {
+//         guessingWordText += guessingWord[i];
+//     }
+//     document.getElementById("currentWord").innerHTML = guessingWordText;
+//     document.getElementById("remainingGuesses").innerHTML = remainingGuesses;
+//     document.getElementById("guessedLetters").innerHTML = guessedLetters.join(" ");
+
+// };
+
+// //searches the secret word to find all instances of a letter
+// //if letter not found in word, subtract a remaining guess
+// //if letter found, replace underscores with letters in secret word
+// function evaluateGuess(letter) {
+//     var positions = [];
+//     var letterInWord = false;
+
+
+//     for(var i=0; i<beatleWordList[currentWordsIndex].length; i++) {
+//         if((beatleWordList[currentWordsIndex][i]) === letter) {
+//             guessingWord[i] = letter;
+//             //positions.push(i);
+//             letterInWord = true;
+//         }
+//     }
+
+//     if(positions.length <= 0) {
+//         remainingGuesses--;
+//     } else {
+//     //loop through the secret word and replace _ with a letter
+//         for(var i=0; i<positions.length; i++) {
+//             guessingWord[positions[i]] = letter;
+            
+//         }
+//     }
+// };
+
+// function checkWin() {
+//     if(guessingWord.indexOf("_") === -1) {
+//         alert("Far out! You win!");
+//         document.getElementById("pressKeyTryAgain").style.cssText= "display:block";
+//         wins++;
+//         hasFinished = true;
+    
+//     }
+// };
+
+// function checkLoss() {
+//     if(remainingGuesses < 1) {
+//         alert("Bummer, you lose.");
+//         document.getElementById("pressKeyTryAgain").style.cssText= "display:block";
+//         losses++;
+//         hasFinished = true;
+//     }
+// }
+
+// //this function compares the key pressed to the secret word
+// function makeGuess(letter) {
+//     if(remainingGuesses > 0) {
+//         if(guessedLetters.indexOf(letter) === -1) {
+//             guessedLetters.push(letter);
+//             evaluateGuess(letter);
+//         }
+//     }
+// };
+
+// document.onkeyup = function(event) {
+//     //if we finish a game, don't count the keystroke as a guess, but instead a game restart
+//     if(hasFinished) {
+//         resetGame();
+//         hasFinished = false;
+//     } else {
+//         //check that a-z was pressed
+//         if(event.keyCode >=65 && event.keyCode <=90) {
+//             makeGuess(event.key.toUpperCase());
+//             updateDisplay();
+//             checkWin();
+//             checkLoss();
+//         }
+//     }
+// };
 
   
 
