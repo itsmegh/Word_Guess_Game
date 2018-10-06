@@ -56,6 +56,9 @@ var remainingGuesses = 0;
 var hasFinished = false;
 var wins = 0;
 var losses = 0;
+var wins;
+var currentWord;
+
 
 //Reset the game-level variables
 function resetGame() {
@@ -65,13 +68,20 @@ function resetGame() {
     // Use the guessingWord array to initialize underscores that get replaced as correct letters are guessed
 
     currentWordsIndex = Math.floor(Math.random() * (beatleWordList.length));
+    currentWord = beatleWordList[currentWordsIndex];
+    var currentWordArray = currentWord.split('');
+    console.log(currentWordArray);
 
     guessedLetters = [];
     guessingWord = [];
 
     //builds the guessing word and hides it on screen
-    for(var i=0; i<beatleWordList[currentWordsIndex].length; i++) {
+    for(var i=0; i<currentWord.length; i++) {
+        if (currentWord[i] !== " "){
+
+        }
         guessingWord.push("_");
+        //from beatleswordlist[at index of a random number].length
     }
 
     document.getElementById("pressKeyTryAgain").style.cssText = "display: none";
@@ -82,6 +92,8 @@ function resetGame() {
 
 //Updates the display on the HTML page
 function updateDisplay() {
+    wins = document.getElementById(wins);
+    console.log(wins);
 
     document.getElementById("wins").innerHTML = wins;
     document.getElementById("losses").innerHTML = losses;
@@ -170,8 +182,6 @@ document.onkeyup = function(event) {
         }
     }
 };
-
-console.log(guessingWord.join(""));
 
 
 
