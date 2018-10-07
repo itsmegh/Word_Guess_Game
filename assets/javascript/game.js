@@ -6,47 +6,6 @@ var beatleWordList = [
 "maggie mae", "kaleidoscope eyes", "marmalade skies", "tangerine trees", "nowhere man", "groovy",
 ]
 
-// var word = beatleWordList[Math.floor(Math.random() * beatleWordList.length)];
-// var answerArray = [];
-// var currentWord = [];
-// var secretWordDiv = document.getElementById("currentWord");
-
-// for (var i=0; i<word.length; i++) {
-//     answerArray[i] = "_";
-// }
-
-// var remainingLetters = word.length;
-
-// //game loop
-// while(remainingLetters > 0) {
-//     var guess = prompt("Guess a letter, or click cancel to stop playing.");
-    
-//     if(guess === null) {
-//         break;
-//     } else if (guess.length !== 1) {
-//         alert("Please enter a single letter.");
-//     } else {
-//         for (var j=0; j<word.length; j++) {
-//             if (word[j] === guess) {
-//                 answerArray[j] = guess;
-//                 remainingLetters--;
-//             }
-//         }
-
-// for (var i=0; i<secretWordDiv.length; i++) {
-//     answerArray.push(secretWordDiv[i].innerHTML);
-// }    
-//         answerArray.join(" ");
-//         console.log(answerArray);
-
-//     }
-// }
-
-// alert("Good job! The answer was " + word);
-
-
-
-
 const maxTries = 10;
 
 var guessedLetters = []; //stores letters player guessed
@@ -78,6 +37,7 @@ function resetGame() {
     //builds the guessing word and hides it on screen
     for(var i=0; i<currentWord.length; i++) {
         if (currentWord[i] !== " "){
+            
 
         }
         guessingWord.push("_");
@@ -92,11 +52,12 @@ function resetGame() {
 
 //Updates the display on the HTML page
 function updateDisplay() {
-    wins = document.getElementById(wins);
-    console.log(wins);
+    // wins = document.getElementById("wins");
 
-    document.getElementById("wins").innerHTML = wins;
-    document.getElementById("losses").innerHTML = losses;
+    // losses = document.getElementById("losses")
+
+    document.getElementById("wins").textContent = wins;
+    document.getElementById("losses").textContent = losses;
     document.getElementById("currentWord").innerHTML = "";
 
     for (var i = 0; i < guessingWord.length; i++) {
@@ -132,6 +93,15 @@ function evaluateGuess(letter) {
     //loop through the secret word and replace _ with a letter
         for(var i=0; i<positions.length; i++) {
             guessingWord[positions[i]] = letter;
+            letterInWord = true;
+        
+        function replaceUnderscore() {
+                var str = document.getElementById("currentWord").innerHTML;
+                var res = str.replace(positions(i), function (letter) {
+                    return x.letter;
+                })
+            }
+            
             
         }
     }
@@ -159,11 +129,15 @@ function checkLoss() {
 
 //this function compares the key pressed to the secret word
 function makeGuess(letter) {
+    currentWordsIndex = Math.floor(Math.random() * (beatleWordList.length));
+    currentWord = beatleWordList[currentWordsIndex];
+    var currentWordArray = currentWord.split('');
+
     if(remainingGuesses > 0) {
         if(guessedLetters.indexOf(letter) === -1) {
             guessedLetters.push(letter);
-            evaluateGuess(letter);
-        }
+            evaluateGuess(letter);       
+        }  
     }
 };
 
